@@ -3,7 +3,7 @@ import 'package:clinic_app/src/features/auth/presentation/screens/register_scree
 import 'package:clinic_app/src/features/auth/presentation/screens/splash_screen.dart';
 import 'package:clinic_app/src/features/clinics/presentation/screens/clinics_screen.dart';
 import 'package:clinic_app/src/features/company/presentation/screens/company_screen.dart';
-import 'package:clinic_app/src/features/doctorsByClinics/presentation/screens/doctors_screens.dart';
+import 'package:clinic_app/src/features/reservation_result/presentation/screens/reservation_result.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -13,12 +13,14 @@ class AppRoutes {
   static const String clinicsScreen = '/clinicsScreen';
   static const String loginScreen = "/loginScreen";
   static const String doctorescreen = "/doctorescreen";
-  static const String getAllOrdersScreen = "/getAllOrdersScreen";
+  static const String reservationResultScreen = "/reservationResultScreen";
+  static const String reservationResultByIDScreen =
+      "/reservationResultByIDScreen";
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splashScreen:
-        return MaterialPageRoute(builder: (_) =>  SplashScreen());
+        return MaterialPageRoute(builder: (_) => SplashScreen());
       case companyScreen:
         return MaterialPageRoute(builder: (_) => const CompanyScreen());
       case registerScreen:
@@ -27,16 +29,10 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => ClinicsScreen());
       case loginScreen:
         return MaterialPageRoute(builder: (_) => LoginScreen());
-       
-      // case getAllOrdersScreen:
-      //   return MaterialPageRoute(builder: (_) => GetAllOrdersScreen());
-      // case editProfileScreen:
-      //   return MaterialPageRoute(builder: (_) => EditProfileScreen());
-
+     case reservationResultScreen:
+        return MaterialPageRoute(builder: (_) =>  ReservationResultScreen());
       default:
-        return MaterialPageRoute(builder: (_) => 
-         SplashScreen());
+        return MaterialPageRoute(builder: (_) => SplashScreen());
     }
   }
-
 }

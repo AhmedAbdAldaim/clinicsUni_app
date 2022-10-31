@@ -7,6 +7,7 @@ import 'package:clinic_app/src/features/clinics/presentation/cubit/clinics_cubit
 import 'package:clinic_app/src/features/company/presentation/cubit/company_cubit.dart';
 import 'package:clinic_app/src/features/doctorsByClinics/presentation/cubit/doctorsbyclinics_cubit.dart';
 import 'package:clinic_app/src/features/reservation/presentation/cubit/reservation_cubit.dart';
+import 'package:clinic_app/src/features/reservation_result/presentation/cubit/reservation_result_cubit.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +41,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.sl<AuthCubit>()),
         BlocProvider(create: (_) => di.sl<ClinicsCubit>()..getAllClinics()),
        BlocProvider(create: (_) => di.sl<DoctorsbyclinicsCubit>()),
-       BlocProvider(create: (_)=> di.sl<ReservationCubit>())
+       BlocProvider(create: (_)=> di.sl<ReservationCubit>()),
+       BlocProvider.value(value: di.sl<ReservationResultCubit>()..getAllReservationResultFun()),
+    //  BlocProvider(create: (_)=> di.sl<ReservationResultCubit>()..getAllReservationResultFun())
       ],
       child: MaterialApp(
         // useInheritedMediaQuery: true,

@@ -26,6 +26,12 @@ import 'package:clinic_app/src/features/reservation/data/repositories/reservatio
 import 'package:clinic_app/src/features/reservation/domain/repositories/reservation_repostories.dart';
 import 'package:clinic_app/src/features/reservation/domain/usecases/send_reservation.dart';
 import 'package:clinic_app/src/features/reservation/presentation/cubit/reservation_cubit.dart';
+import 'package:clinic_app/src/features/reservation_result/data/datasources/remote_datat_sourser_reservation_result.dart';
+import 'package:clinic_app/src/features/reservation_result/data/repositories/reservation_result_repostories_imp.dart';
+import 'package:clinic_app/src/features/reservation_result/domain/repositories/reservation_result_repostiores.dart';
+import 'package:clinic_app/src/features/reservation_result/domain/usecases/get_all_reservation_result_byid_usecase.dart';
+import 'package:clinic_app/src/features/reservation_result/domain/usecases/get_all_reservation_result_usecase.dart';
+import 'package:clinic_app/src/features/reservation_result/presentation/cubit/reservation_result_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -42,8 +48,11 @@ Future<void> init() async {
   sl.registerLazySingleton(() => ClinicsCubit(clinicsUseCase: sl()));
   sl.registerLazySingleton(
       () => DoctorsbyclinicsCubit(getAllDoctorsUseCase: sl()));
-   sl.registerLazySingleton(
-      () => ReservationCubit(sendReservationUseCase: sl()));    
+  sl.registerLazySingleton(
+      () => ReservationCubit(sendReservationUseCase: sl()));
+  sl.registerLazySingleton(
+      () => ReservationResultCubit(getallreservationreslut: sl(), getallreservationreslutByID: sl()));
+
   //2-Usescase
   sl.registerLazySingleton(() => CompanyUsecase(companyRepostiores: sl()));
   sl.registerLazySingleton(() => RegisterUseCase(authRepostoires: sl()));
@@ -53,6 +62,10 @@ Future<void> init() async {
       () => GetAllDoctorsUseCase(doctorsRepostiores: sl()));
   sl.registerLazySingleton(
       () => SendReservationUseCase(reservationRepostories: sl()));
+  sl.registerLazySingleton(
+      () => GetAllReservationResultUsecase(reservatioResultRepostiores: sl()));
+  sl.registerLazySingleton(
+      () => GetAllReservationResultByIDUsecase(reservatioResultRepostiores: sl()));
   //3-Repo
   sl.registerLazySingleton<CompanyRepostiores>(
       () => CompanyRepostioresImp(networkInfo: sl(), remoteDataSoures: sl()));
@@ -62,8 +75,12 @@ Future<void> init() async {
       ClinicRepostioresImp(networkInfo: sl(), remoteDataSourseClinic: sl()));
   sl.registerLazySingleton<DoctorsRepostiores>(() =>
       DoctorsRepostoriesImp(networkInfo: sl(), remoteDataSourseDoctors: sl()));
-    sl.registerLazySingleton<ReservationRepostories>(() =>
-      ReservationRepostoriesImp(networkInfo: sl(), remoteDataSourseReservation: sl()));    
+  sl.registerLazySingleton<ReservationRepostories>(() =>
+      ReservationRepostoriesImp(
+          networkInfo: sl(), remoteDataSourseReservation: sl()));
+  sl.registerLazySingleton<ReservatioResultRepostiores>(() => ReservationResultImp(
+      networInfo: sl(), remoteDataSourseRervationResult: sl()));
+
   //4-remotdatasourse
 
   sl.registerLazySingleton(
@@ -74,8 +91,12 @@ Future<void> init() async {
       () => RemoteDataSourseAuthImp(client: sl()));
   sl.registerLazySingleton<RemoteDataSourseClinic>(
       () => RemoteDataSourseClincsImp(client: sl()));
-  sl.registerLazySingleton<RemoteDataSourseDoctors>(() => RemoteDataSousesDoctorsImp(client: sl()));
-  sl.registerLazySingleton<RemoteDataSourseReservation>(() => RemoteDtateSouresReservationImp(client: sl()));
+  sl.registerLazySingleton<RemoteDataSourseDoctors>(
+      () => RemoteDataSousesDoctorsImp(client: sl()));
+  sl.registerLazySingleton<RemoteDataSourseReservation>(
+      () => RemoteDtateSouresReservationImp(client: sl()));
+  sl.registerLazySingleton<RemoteDataSourseRervationResult>(
+      () => RemoteDataSourseRervationResultImp(client: sl()));
 
   //5-network
   sl.registerLazySingleton<NetworkInfo>(
