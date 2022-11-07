@@ -12,12 +12,12 @@ class ReservationResultScreen extends StatelessWidget {
   ReservationResultScreen({super.key});
 
   var cubit = di.sl<ReservationResultCubit>();
-
+  
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       cubit.getAllReservationResultFun();
-      
+
       return BlocBuilder<ReservationResultCubit, ReservationResultState>(
         builder: (context, state) {
           return Directionality(
