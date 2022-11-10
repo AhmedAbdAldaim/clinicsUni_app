@@ -13,15 +13,13 @@ class ClinicRepostioresImp extends ClinicRepostiores {
       {required this.networkInfo, required this.remoteDataSourseClinic});
   @override
   Future<Either<Failure, List<ClinicEntit>>> getAllClinics() async {
-    if (await networkInfo.checkInternet()) {
+ 
       try {
         final remote = await remoteDataSourseClinic.getAllClinicsDataSourse();
         return Right(remote);
       } on ServerExceptions {
         return Left(ServerFailure());
       }
-    } else {
-      return Left(OfflineFailure());
-    }
+    
   }
 }

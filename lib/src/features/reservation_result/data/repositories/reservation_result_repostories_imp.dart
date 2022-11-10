@@ -21,7 +21,6 @@ class ReservationResultImp extends ReservatioResultRepostiores {
   @override
   Future<Either<Failure, List<ReservatioResultEntite>>>
       getAllReservationResult() async {
-    if (await networInfo.checkInternet()) {
       try {
         final remote =
             await remoteDataSourseRervationResult.getAllRersvationResult();
@@ -29,23 +28,19 @@ class ReservationResultImp extends ReservatioResultRepostiores {
       } on ServerExceptions {
         return Left(ServerFailure());
       }
-    } else {
-      return Left(OfflineFailure());
-    }
+   
   }
 
   @override
   Future<Either<Failure, List<ReservationResultByIdEntite>>> 
   getAllReservationResultByID({required int id}) async{
-    if (await networInfo.checkInternet()) {
+  
       try {
         final remote = await remoteDataSourseRervationResult.getAllRersvationResultByID(id: id);
         return Right(remote);
       } on ServerExceptions {
         return Left(ServerFailure());
       }
-    } else {
-      return Left(OfflineFailure());
-    }
+   
   }
 }

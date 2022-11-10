@@ -13,15 +13,13 @@ class CompanyRepostioresImp extends CompanyRepostiores {
 
   @override
   Future<Either<Failure, List<CompanyEntite>>> getAllCompany() async {
-    if (await networkInfo.checkInternet()) {
+
       try {
         final remote = await remoteDataSoures.getAllCompanyDataSourses();
         return Right(remote);
       } on ServerFailure {
         return Left(ServerFailure());
       }
-    } else {
-      return Left(OfflineFailure());
-    }
+   
   }
 }

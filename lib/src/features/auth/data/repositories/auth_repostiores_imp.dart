@@ -17,16 +17,13 @@ class AuthRepostioriesImp extends AuthRepostiores {
   @override
   Future<Either<Failure, LoginEntite>> loginRepo(
       Map<String, dynamic> data) async {
-    if (await networkInfo.checkInternet()) {
       try {
         final remote = await remoteDataSoures.loginDataSourses(data);
         return Right(remote);
       } on ServerExceptions {
         return Left(ServerFailure());
       }
-    } else {
-      return Left(OfflineFailure());
-    }
+    
   }
 
   @override

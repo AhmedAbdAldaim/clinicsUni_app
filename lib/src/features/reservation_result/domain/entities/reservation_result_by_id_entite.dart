@@ -2,11 +2,21 @@ import 'package:equatable/equatable.dart';
 
 class ReservationResultByIdEntite extends Equatable {
   SickModel? sickModel;
-  ReservationResultByIdEntite({required this.sickModel});
-  
-  @override
-  List<Object?> get props => [sickModel];
+  late String? price;
+  late String? discount;
+  late String? type;
+  late String? companyname;
 
+  ReservationResultByIdEntite(
+      {
+      required this.companyname,
+      required this.price,
+      required this.discount,
+      required this.type,
+      required this.sickModel});
+
+  @override
+  List<Object?> get props => [companyname , price , discount , type , sickModel];
 }
 
 class SickModel {

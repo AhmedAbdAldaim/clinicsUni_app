@@ -14,6 +14,7 @@ class ReservationCubit extends Cubit<ReservationState> {
     emit(ReservationLoadingState());
     final res = await sendReservationUseCase.call(id: id);
     res.fold((l) {
+      print(l);
       emit(ReservationErrorState());
     }, (r) {
       emit(ReservationSuccessState());

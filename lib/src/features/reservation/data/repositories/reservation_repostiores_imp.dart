@@ -12,15 +12,13 @@ class ReservationRepostoriesImp extends ReservationRepostories {
       {required this.networkInfo, required this.remoteDataSourseReservation});
   @override
   Future<Either<Failure, Unit>> sendReseration({required int id}) async {
-    if (await networkInfo.checkInternet()) {
+   
       try {
         final remote = await remoteDataSourseReservation.sendReservation(id: id);
         return Right(remote);
       } on ServerExceptions {
         return Left(ServerFailure());
       }
-    } else {
-      return Left(OfflineFailure());
-    }
+  
   }
 }

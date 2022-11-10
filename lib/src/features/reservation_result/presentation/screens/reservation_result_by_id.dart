@@ -16,7 +16,7 @@ class ReservationResultByIdScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value:  cubit..getAllReservationResultByIDFun(id: id),
+      value: cubit..getAllReservationResultByIDFun(id: id),
       child: BlocBuilder<ReservationResultCubit, ReservationResultState>(
         builder: (context, state) {
           return Directionality(
@@ -50,9 +50,11 @@ class ReservationResultByIdScreen extends StatelessWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text('الحالة :',
+                                            Text(
+                                              'الحالة :',
                                               style: TextStyle(
-                                                  color: Colors.deepPurple),),
+                                                  color: Colors.deepPurple),
+                                            ),
                                             SizedBox(
                                               height: AppMediaQuery.height(
                                                       context: context) *
@@ -60,6 +62,72 @@ class ReservationResultByIdScreen extends StatelessWidget {
                                             ),
                                             Text(cubit.listbyid![index]
                                                 .sickModel!.status),
+                                            SizedBox(
+                                              height: AppMediaQuery.height(
+                                                      context: context) *
+                                                  0.02,
+                                            ),
+                                            const Text(
+                                              'شركة التأمين :',
+                                              style: TextStyle(
+                                                  color: Colors.deepPurple),
+                                            ),
+                                            SizedBox(
+                                              height: AppMediaQuery.height(
+                                                      context: context) *
+                                                  0.01,
+                                            ),
+                                            Text(cubit
+                                                .listbyid![index].companyname!),
+                                            SizedBox(
+                                              height: AppMediaQuery.height(
+                                                      context: context) *
+                                                  0.02,
+                                            ),
+                                            const Text(
+                                              'نوع الشركة :',
+                                              style: TextStyle(
+                                                  color: Colors.deepPurple),
+                                            ),
+                                            SizedBox(
+                                              height: AppMediaQuery.height(
+                                                      context: context) *
+                                                  0.01,
+                                            ),
+                                            Text(cubit.listbyid![index].type!),
+                                            SizedBox(
+                                              height: AppMediaQuery.height(
+                                                      context: context) *
+                                                  0.02,
+                                            ),
+                                            const Text(
+                                              ' السعر:',
+                                              style: TextStyle(
+                                                  color: Colors.deepPurple),
+                                            ),
+                                            SizedBox(
+                                              height: AppMediaQuery.height(
+                                                      context: context) *
+                                                  0.01,
+                                            ),
+                                            Text(cubit.listbyid![index].price!),
+                                            SizedBox(
+                                              height: AppMediaQuery.height(
+                                                      context: context) *
+                                                  0.02,
+                                            ),
+                                            const Text(
+                                              'السعر بعد التخفيض:',
+                                              style: TextStyle(
+                                                  color: Colors.deepPurple),
+                                            ),
+                                            SizedBox(
+                                              height: AppMediaQuery.height(
+                                                      context: context) *
+                                                  0.01,
+                                            ),
+                                            Text(cubit
+                                                .listbyid![index].discount!),
                                             SizedBox(
                                               height: AppMediaQuery.height(
                                                       context: context) *

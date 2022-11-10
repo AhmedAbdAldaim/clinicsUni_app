@@ -14,7 +14,7 @@ class DoctorsRepostoriesImp extends DoctorsRepostiores {
   @override
   Future<Either<Failure, List<DoctorEntite>>> getAllDoctors(
       {required int id}) async {
-    if (await networkInfo.checkInternet()) {
+   
       try {
         final remote =
             await remoteDataSourseDoctors.getAllDoctorseRemote(id: id);
@@ -22,8 +22,6 @@ class DoctorsRepostoriesImp extends DoctorsRepostiores {
       } on ServerExceptions {
         return Left(ServerFailure());
       }
-    } else {
-      return Left(OfflineFailure());
-    }
+   
   }
 }
